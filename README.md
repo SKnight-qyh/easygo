@@ -1,2 +1,2 @@
 # netco
-a network coroutine library based on c plus plus 11
+a network coroutine library based on c++ 11
