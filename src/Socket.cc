@@ -156,22 +156,51 @@ void Socket::connect(const char* ip, int port)
 // 关闭socket的写操作
 int Socket::shutdownWrite()
 {
-
+    int ret = ::shutdown(_sockfd, SHUT_WR);
+    return ret;
 }
 
 // 获取套接字的选项,成功则返回true，反之，返回false
-bool Socket::getSocketOpt(struct tcp_info* info) const
+bool Socket::getSocketOpt(struct tcp_info* tcpi) const
 {
+    socklen_t len = sizeof(*tcpi);
+    memset(tcpi, 0, sizeof(*tcpi));
+    return ::getsockopt(_sockfd, SOL_TCP, TCP_INFO, tcpi, &len);
 
 }
 
-bool Socket::getSocketOptString(char* buf, int len)
+bool Socket::getSocketOptString(char* buf, int len) const
 {
-
+    tcp_info tcpi;
+    bool ok = getSocketOpt(&tcpi);
+    if (ok)
+    {
+        snprintf(buf, len, "unrecovered=%u "
+			"rto=%u ato=%u snd_mss=%u rcv_mss=%u "
+			"lost=%u retrans=%u rtt=%u rttvar=%u "
+			"sshthresh=%u cwnd=%u total_retrans=%u",
+			tcpi.tcpi_retransmits,  // Number of unrecovered [RTO] timeouts
+			tcpi.tcpi_rto,          // Retransmit timeout in usec
+			tcpi.tcpi_ato,          // Predicted tick of soft clock in usec
+			tcpi.tcpi_snd_mss,
+			tcpi.tcpi_rcv_mss,
+			tcpi.tcpi_lost,         // Lost packets
+			tcpi.tcpi_retrans,      // Retransmitted packets out
+			tcpi.tcpi_rtt,          // Smoothed round trip time in usec
+			tcpi.tcpi_rttvar,       // Medium deviation
+			tcpi.tcpi_snd_ssthresh,
+			tcpi.tcpi_snd_cwnd,
+			tcpi.tcpi_total_retrans);  // Total retransmits for entire connection
+    }
+    return ok;
 }
 
 std::string Socket::getSocketOptString() const
 {
+    char buf[1024];
+    buf[0] = '\0';
+    getSocketOptString(buf, sizeof(buf));
+    return std::string(buf);
 
 }
 
@@ -181,30 +210,44 @@ std::string Socket::getSocketOptString() const
 // 可以通过设置TCP_NODELAY选项来实现
 int Socket::setTcpNoDelay(bool on)
 {
+    int optval = on ? 1 : 0;
+    int ret = ::setsockopt(_sockfd, IPPROTO_TCP, TCP_NODELAY, &optval, static_cast<socklen_t>(sizeof optval) );
+    return ret;
 
 }
 
 int Socket::setReuseAddr(bool on)
 {
+    int optval = on ? 1 : 0;
+    int ret = ::setsockopt(_sockfd, SOL_SOCKET, SO_REUSEADDR, &optval, static_cast<socklen_t>(sizeof optval));
+    return ret;
 
 }
 
 int Socket::setReusePort(bool on)
 {
-
+    int optval = on ? 1 : 0;
+    int ret = ::setsockopt(_sockfd, SOL_SOCKET, SO_REUSEPORT, &optval, static_cast<socklen_t>(sizeof optval));
+    return ret;
 }
 
 int Socket::setKeepAlive(bool on)
 {
-
+    int optval  = on ? 1 : 0;
+    int ret = ::setsockopt(_sockfd, SOL_SOCKET, SO_KEEPALIVE, &optval, static_cast<socklen_t>(sizeof optval));
+    return ret;
 }
 
 int Socket::setNonBlockSocket()
 {
-
+    int flags = ::fcntl(_sockfd, F_GETFL, 0);
+    int ret = ::fcntl(_sockfd, F_SETFL, flags | O_NONBLOCK);
+    return ret;
 }
 
 int Socket::setBlockSocket()
 {
-    
+    int flags = ::fcntl(_sockfd, F_GETFL, 0);
+    int ret = ::fcntl(_sockfd, F_SETFL, flags & (~O_NONBLOCK));
+    return ret;
 }

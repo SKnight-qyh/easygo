@@ -12,7 +12,8 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <sys/epoll.h>
-
+#include <netinet/tcp.h>
+#include <fcntl.h>
 namespace netco
 {
 /* Socket class : nonblocking fd is default
@@ -50,7 +51,7 @@ namespace netco
         // 获取套接字的选项,成功则返回true，反之，返回false
         bool getSocketOpt(struct tcp_info* info) const;
 
-        bool getSocketOptString(char* buf, int len);
+        bool getSocketOptString(char* buf, int len) const;
 
         std::string getSocketOptString() const;
         
