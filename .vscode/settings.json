@@ -51,6 +51,8 @@
         "thread": "cpp",
         "typeinfo": "cpp",
         "*.h]": "cpp",
-        "cerrno": "cpp"
+        "cerrno": "cpp",
+        "queue": "cpp",
+        "set": "cpp"
     }
 }

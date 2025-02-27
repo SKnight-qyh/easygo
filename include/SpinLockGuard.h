@@ -2,27 +2,27 @@
 
 #pragma once
 
-#include "spinLock.h"
+#include "SpinLock.h"
 #include "noncopyable.h"
 
 namespace netco
 {
-class spinLockGuard : public noncopyable
+class SpinLockGuard : public noncopyable
 {
 public:
-    spinLockGuard(spinLock& slock)
+    SpinLockGuard(SpinLock& slock)
         : _lock(slock)
     {
         _lock.lock();
     }
 
-    ~spinLockGuard()
+    ~SpinLockGuard()
     {
         _lock.unlock();
     }
 
 private:
-    spinLock& _lock;
-};  // end spinLockGuard
+    SpinLock& _lock;
+};  // end SpinLockGuard
 
 }   // end netco
