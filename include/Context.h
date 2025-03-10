@@ -6,7 +6,7 @@
 
 namespace netco 
 {
-class context : public noncopyable
+class Context : public noncopyable
 {
 
 }; // end context

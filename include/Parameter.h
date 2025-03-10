@@ -18,7 +18,7 @@ namespace netco
         // the size of listen socket backlog
         static constexpr int listenBacklog = 4096;
 
-        // 内存池没有空闲内存块是申请memPoolMallocObjCnt个对象大小的内存块
+        // 内存池没有空闲内存块时申请memPoolMallocObjCnt个对象大小的内存块
         static constexpr int memPoolMallocObjCnt = 40;
 
     }

@@ -6,13 +6,13 @@
 
 namespace netco
 {
-class spinLock : public noncopyable
+class SpinLock : public noncopyable
 {
 public:
-    spinLock()
+    SpinLock()
         : _sem(1) 
     { }
-    ~spinLock() 
+    ~SpinLock() 
     { 
         unlock(); 
     }
@@ -35,6 +35,6 @@ public:
 
 private:
     std::atomic_int _sem;   // 1: unlocked, 0: locked
-};  // end spinlock
+};  // end SpinLock
 }   // end netco 
 
