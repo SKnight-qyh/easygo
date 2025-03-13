@@ -1,5 +1,5 @@
 #include "../include/Processor.h"
-
+#include "../include/Coroutine.h"
 
 using namespace netco;
 
@@ -8,7 +8,14 @@ thread_local int threadIdx = -1;
 
 Processor::Processor(int tid)
     : tid_(tid)
-{ }
+    , pLoop_(nullptr)
+    , status_(PRO_STOPPED)
+    , runningNewQue_(0)
+    , curCo_(nullptr)
+    , mainContext_(0)
+{
+    mainContext_.makeCurContext();
+}
 
 // size_t Processor::getCoCnt() const
 // {

@@ -58,7 +58,7 @@ public:
         { return curCo_; }
 
     inline Context* getMainCtext()
-        { return &mainCtext_; }
+        { return &mainContext_; }
 
     void goCo(Coroutine* co);
 
@@ -79,12 +79,12 @@ private:
     int coCnt_;
     Coroutine* curCo_;
     // main context of this processor
-    Context mainCtext_;
+    Context mainContext_;
     Epoller epoller_;
     Timer timer_;
 
     // 新任务队列 使用双缓存队列
-    std::queue<Coroutine*> newCos_;
+    std::queue<Coroutine*> newCos_[2];
 
     //标记双缓存队列的序号
     volatile int runningNewQue_;
@@ -98,7 +98,7 @@ private:
 
     // coroutines from timer
     std::vector<Coroutine*> timerExpiredCos_;
-
+ 
     // the coroutines to be removed will be put into this vector
     // 一次循环遍历后才会删除
     std::vector<Coroutine*> removeCos_;
@@ -106,9 +106,6 @@ private:
     std::set<Coroutine*> coSet_;
 
     ObjPool<Coroutine> coPool_;
+};// end Processor
 
-
-    std::vector<Coroutine*> 
-};
-
-}
+}// end netco

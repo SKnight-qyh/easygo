@@ -3,6 +3,8 @@
 #include "Parameter.h"
 #include "noncopyable.h"
 
+#include <cstdlib>
+
 namespace netco
 {
 struct MemBlockNode
