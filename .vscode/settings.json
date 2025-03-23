@@ -53,6 +53,7 @@
         "*.h]": "cpp",
         "cerrno": "cpp",
         "queue": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "map": "cpp"
     }
 }

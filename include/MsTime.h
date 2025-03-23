@@ -26,7 +26,7 @@ public:
 
     MsTime& operator=(const MsTime& other)
     {
-        timeVal_ = other.timeVal_;
+        this->timeVal_ = other.timeVal_;
         return *this;
     }
     ~MsTime() {};
@@ -40,7 +40,7 @@ public:
     static void toLocalTime(time_t sec, long timezone, struct tm* tm_time);
 
     // time interval from now
-    timespec* timeIntervalFromNow();
+    timespec timeIntervalFromNow();
 
     int64_t getTimeVal() 
     {
@@ -52,32 +52,32 @@ private:
 
 };
 
-inline bool operator<(MsTime& left, MsTime& right)
+inline bool operator<(MsTime left, MsTime right)
 {
     return left.getTimeVal() < right.getTimeVal();
 }
 
-inline bool operator>(MsTime& left, MsTime& right)
+inline bool operator>(MsTime left, MsTime right)
 {
     return left.getTimeVal() > right.getTimeVal();
 }
 
-inline bool operator<=(MsTime& left, MsTime& right)
+inline bool operator<=(MsTime left, MsTime right)
 {
     return left.getTimeVal() <= right.getTimeVal();
 }
 
-inline bool operator>=(MsTime& left, MsTime& right)
+inline bool operator>=(MsTime left, MsTime right)
 {
     return left.getTimeVal() >= right.getTimeVal();
 }
 
-inline bool operator==(MsTime& left, MsTime& right)
+inline bool operator==(MsTime left, MsTime right)
 {
     return left.getTimeVal() == right.getTimeVal();
 }
 
-inline bool operator!=(MsTime& left, MsTime& right)
+inline bool operator!=(MsTime left, MsTime right)
 {
     return left.getTimeVal() != right.getTimeVal();
 }
