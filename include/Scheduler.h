@@ -22,7 +22,7 @@ namespace netco
         void createNewCo(std::function<void()>&& func, size_t stackSize);
         void createNewCo(std::function<void()>& func, size_t stackSize);
         
-        Processor* getPro(int id);
+        Processor* getProcessor(int id);
 
         int getProCnt();
 

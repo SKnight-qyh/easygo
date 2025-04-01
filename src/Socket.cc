@@ -43,7 +43,7 @@ int Socket::bind(int port)
 {
     _port = port;
     sockaddr_in serv = {0};
-    // memset(&serv, 0, sizeof(serv));
+    memset(&serv, 0, sizeof(serv));
     serv.sin_family = AF_INET;
     serv.sin_port = htons(_port);
     serv.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -97,12 +97,12 @@ Socket Socket::accept()
     {
         return retSocket;
     }
-    // netco::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
-	// auto con(accept_raw());
-	// if(con.isUseful()){
-	// 	return con;
-	// }
-	// return accept();
+    Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
+	auto con(accept_raw());
+	if(con.isUseful()){
+		return con;
+	}
+	return accept();
 }
 
 ssize_t Socket::read(void* buf, size_t len)
@@ -116,8 +116,8 @@ ssize_t Socket::read(void* buf, size_t len)
     {
         return read(buf, len);
     }
-    // netco::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
-	// return ::read(_sockfd, buf, count);
+    Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLIN | EPOLLPRI | EPOLLRDHUP | EPOLLHUP);
+	return ::read(_sockfd, buf, len);
 }
 
 ssize_t Socket::send(const void* buf, size_t len )
@@ -128,8 +128,8 @@ ssize_t Socket::send(const void* buf, size_t len )
     {
         return len;
     }
-    // netco::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
-	// return send((char *)buf + sendIdx, count - sendIdx);
+    Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
+	return send(static_cast<const char*>(buf) + sendIdx, len - sendIdx);
 
 }
 
@@ -148,8 +148,8 @@ void Socket::connect(const char* ip, int port)
 	if(ret == -1 && errno == EINTR){
 		return connect(ip, port);
 	}
-	// netco::Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
-	// return connect(ip, port);
+	Scheduler::getScheduler()->getProcessor(threadIdx)->waitEvent(_sockfd, EPOLLOUT);
+	 return connect(ip, port);
 
 }
 

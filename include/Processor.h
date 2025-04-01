@@ -5,9 +5,10 @@
 #include "ObjPool.h"
 #include "Context.h"
 #include "SpinLock.h"
+#include "SpinLockGuard.h"
 #include "Epoller.h"
 #include "Timer.h"
-
+#include "Parameter.h"
 
 #include <sys/types.h>
 #include <thread>
@@ -15,9 +16,13 @@
 #include <vector>
 #include <queue>
 #include <set>
+#include <unordered_set>
+extern thread_local int threadIdx;
 
 namespace netco 
 {
+
+
 enum ProStatus  
 {
     PRO_RUNNING = 0,
@@ -36,8 +41,8 @@ public:
     void goNewCo(std::function<void()>& func, int stackSize);
     void yield();
 
-    // the current coroutine waits for time ms
-    void wait(MsTime time);
+    // the current coroutine waits for timeout ms
+    void wait(MsTime timeout);
 
     // kill the current coroutine
     void killCurCo();
@@ -83,7 +88,7 @@ private:
     Epoller epoller_;
     Timer timer_;
 
-    // 新任务队列 使用双缓存队列
+    // 新任务队列 使用双缓存队列 交替读写，防止竞争
     std::queue<Coroutine*> newCos_[2];
 
     //标记双缓存队列的序号
@@ -99,11 +104,11 @@ private:
     // coroutines from timer
     std::vector<Coroutine*> timerExpiredCos_;
  
-    // the coroutines to be removed will be put into this vector
+    // 存储kill的协程
     // 一次循环遍历后才会删除
     std::vector<Coroutine*> removeCos_;
-
-    std::set<Coroutine*> coSet_;
+    // 当前Processor的注册表 包含所有该Processor管理的协程
+    std::unordered_set<Coroutine*> coSet_;
 
     ObjPool<Coroutine> coPool_;
 };// end Processor

@@ -3,6 +3,9 @@
 #include "noncopyable.h"
 #include "Logger.h"
 #include "Parameter.h"
+#include "Scheduler.h"
+#include "Coroutine.h"
+#include "Socket.h"
 
 #include <string>
 #include <sys/socket.h>

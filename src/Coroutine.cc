@@ -15,7 +15,7 @@ Coroutine::Coroutine(Processor* pro, size_t stackSize, std::function<void()>&& f
     , status_(CO_DEAD)
     , context_(stackSize)
 {
-    status_ = CO_READY; // 为什么不用CO_READY？
+    status_ = CO_READY; // 为什么直接CO_READY？
                         // 防止context_构造失败
 }
 
@@ -25,7 +25,7 @@ Coroutine::Coroutine(Processor* pro, size_t stackSize, std::function<void()>& fu
     , status_(CO_DEAD)
     , context_(stackSize)
 {
-    status_ = CO_READY; // 为什么不用CO_READY？
+    status_ = CO_READY; // 为什么直接CO_READY？
                         // 防止context_构造失败
 }
 

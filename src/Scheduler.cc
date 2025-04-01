@@ -63,7 +63,7 @@ void Scheduler::createNewCo(std::function<void()>& func, size_t stackSize)
     _proSeletor.next()->goNewCo(func, stackSize);
 }
 
-Processor* Scheduler::getPro(int id)
+Processor* Scheduler::getProcessor(int id)
 {
     return _pros[id];
 }
