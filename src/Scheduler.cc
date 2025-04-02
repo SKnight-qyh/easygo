@@ -3,7 +3,7 @@
 
 #include <sys/sysinfo.h>
 
-using namespace netco;
+using namespace easygo;
 
 Scheduler* Scheduler::_pScheduler = nullptr;
 std::mutex Scheduler::_schMutex;

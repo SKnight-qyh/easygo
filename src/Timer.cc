@@ -4,7 +4,7 @@
 #include <sys/timerfd.h>
 #include <sys/epoll.h>
 #include <string.h>
-using namespace netco;
+using namespace easygo;
 
 Timer::Timer()
     : timefd_(-1)

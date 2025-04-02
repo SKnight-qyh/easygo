@@ -1,7 +1,7 @@
 #include "../include/Processor.h"
 
 
-using namespace netco;
+using namespace easygo;
 
 // 线程的局部变量， 不同线程间互不影响
 thread_local int threadIdx = -1;

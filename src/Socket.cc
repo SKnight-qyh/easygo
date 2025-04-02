@@ -2,7 +2,7 @@
 
 #include <errno.h>
 
-using namespace netco;
+using namespace easygo;
 
 Socket::Socket(int sockfd, std::string ip, int port)
     : _sockfd(sockfd)

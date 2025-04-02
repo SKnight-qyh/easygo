@@ -2,7 +2,7 @@
 
 #include <sys/time.h>
 
-using namespace netco;
+using namespace easygo;
 
 MsTime MsTime::nowMs()
 {

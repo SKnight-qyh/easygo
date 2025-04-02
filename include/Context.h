@@ -4,7 +4,7 @@
 
 #include <ucontext.h>
 
-namespace netco 
+namespace easygo 
 {
 
 class Processor;
@@ -43,4 +43,4 @@ private:
 
 
 }; // end context
-}   // end netco 
+}   // end easygo 

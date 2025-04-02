@@ -5,7 +5,7 @@
 
 #include <cstdlib>
 
-namespace netco
+namespace easygo
 {
 struct MemBlockNode
 {
@@ -96,4 +96,4 @@ void MemPool<objSize>::freeMemBlock(void* block)
     freeListHead_ = newNode;
 }    
 
-}//end netco
+}//end easygo

@@ -1,6 +1,6 @@
 #include "../include/ProcessorSelector.h"
 #include "../include/Processor.h"
-using namespace netco;
+using namespace easygo;
 
 ProcessorSelector::ProcessorSelector(std::vector<Processor*>& processors, int strategy)
     : _processors(processors)

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <errno.h>
 
-using namespace netco;
+using namespace easygo;
 
 Epoller::Epoller()
     : epollfd_(-1)

@@ -2,12 +2,12 @@
 
 #include <sys/types.h>
 
-namespace netco
+namespace easygo
 {
     namespace  Parameter
     {
         // the size of coroutine stack
-        const static size_t coStackSize = 1024 * 32;
+        const static size_t coStackSize = 1024 * 8;
 
         // the size of active epoll_event vector
         static constexpr int epollerListFirstSize = 16;

@@ -3,7 +3,7 @@
 #include "MemPool.h"
 
 #include <type_traits>
-namespace netco
+namespace easygo
 {
 template<class T>
 class ObjPool : public noncopyable
@@ -82,4 +82,4 @@ inline void ObjPool<T>::deleteAux(std::false_type, void* obj)
 
 }
 
-}//end netco
+}//end easygo

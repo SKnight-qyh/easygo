@@ -6,7 +6,7 @@
 #include <sys/epoll.h>
 #include <vector>
 
-namespace netco
+namespace easygo
 {
 class Coroutine;
 
@@ -35,4 +35,4 @@ private:
     std::vector<struct epoll_event> activeEpollEvents_;
 
 };//end Epoller
-}// end netco
+}// end easygo

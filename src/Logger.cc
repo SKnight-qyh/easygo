@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "../include/Logger.h"
-
+using namespace easygo;
 //获取唯一的实例对象
 Logger& Logger::instance()
 {

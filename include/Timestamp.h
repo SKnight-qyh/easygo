@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <time.h>
-
+namespace easygo {
 class Timestamp
 {
 
@@ -16,3 +16,5 @@ public:
 private:
     int64_t microSecondsSinceEpoch_;
 };
+
+}

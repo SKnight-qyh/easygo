@@ -4,7 +4,7 @@
 #include "../include/Parameter.h"
 
 #include <stdlib.h>
-using namespace netco;
+using namespace easygo;
 
 Context::Context(size_t stackSize)
     : stackSize_(stackSize)

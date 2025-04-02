@@ -12,7 +12,7 @@
 #include <map>
 
 #define TIMER_DUMMYBUF_SIZE 1024
-namespace netco 
+namespace easygo 
 {
 class Context;
 class Epoller;
@@ -54,4 +54,4 @@ private:
     TimerHeap timerCoHeap_; // mintop heap
 
 };//end timer
-}//end netco
+}//end easygo

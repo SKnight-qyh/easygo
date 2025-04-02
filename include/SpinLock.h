@@ -4,7 +4,7 @@
 
 #include <atomic>
 
-namespace netco
+namespace easygo
 {
 class SpinLock : public noncopyable
 {
@@ -36,5 +36,5 @@ public:
 private:
     std::atomic_int _sem;   // 1: unlocked, 0: locked
 };  // end SpinLock
-}   // end netco 
+}   // end easygo 
 

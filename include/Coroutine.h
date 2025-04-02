@@ -5,7 +5,7 @@
 
 #include <functional> 
 
-namespace netco
+namespace easygo
 {
 class Processor;
 
@@ -46,4 +46,4 @@ private:
     coStatus status_;
 
 };
-}   // end netco
+}   // end easygo

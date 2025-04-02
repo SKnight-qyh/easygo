@@ -19,7 +19,7 @@
 #include <unordered_set>
 extern thread_local int threadIdx;
 
-namespace netco 
+namespace easygo 
 {
 
 
@@ -113,4 +113,4 @@ private:
     ObjPool<Coroutine> coPool_;
 };// end Processor
 
-}// end netco
+}// end easygo

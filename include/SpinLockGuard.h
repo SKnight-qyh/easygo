@@ -5,7 +5,7 @@
 #include "SpinLock.h"
 #include "noncopyable.h"
 
-namespace netco
+namespace easygo
 {
 class SpinLockGuard : public noncopyable
 {
@@ -25,4 +25,4 @@ private:
     SpinLock& _lock;
 };  // end SpinLockGuard
 
-}   // end netco
+}   // end easygo

@@ -5,7 +5,7 @@
 
 struct timespec;
 
-namespace netco
+namespace easygo
 {
 const char days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 class MsTime
@@ -81,4 +81,4 @@ inline bool operator!=(MsTime left, MsTime right)
 {
     return left.getTimeVal() != right.getTimeVal();
 }
-} //end netco
+} //end easygo

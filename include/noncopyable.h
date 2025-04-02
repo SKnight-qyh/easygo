@@ -1,5 +1,5 @@
 #pragma once
-
+namespace easygo {
 class noncopyable
 {
 public:
@@ -9,3 +9,5 @@ public:
     noncopyable() = default;
     ~noncopyable() = default;
 };
+
+}

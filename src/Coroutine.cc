@@ -2,7 +2,7 @@
 #include "../include/Processor.h"
 #include "../include/Context.h"
 
-using namespace netco;
+using namespace easygo;
 
 static void coFunc(Processor* pro)
 {

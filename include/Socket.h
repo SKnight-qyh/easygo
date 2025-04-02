@@ -17,7 +17,7 @@
 #include <sys/epoll.h>
 #include <netinet/tcp.h>
 #include <fcntl.h>
-namespace netco
+namespace easygo
 {
 /* Socket class : nonblocking fd is default
  * intention : 

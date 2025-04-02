@@ -7,8 +7,9 @@
 #include <mutex>
 #include <vector> 
 
-namespace netco
+namespace easygo
 {
+    // 单例模式
     class Scheduler : public noncopyable
     {
     protected:

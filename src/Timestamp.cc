@@ -2,7 +2,8 @@
 
 #include "../include/Timestamp.h"
 
-#include <time.h>
+using namespace easygo;
+
 Timestamp::Timestamp()
     :microSecondsSinceEpoch_(0) {}
 
