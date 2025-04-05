@@ -64,7 +64,7 @@ public:
 
     inline Context* getMainCtext()
         { return &mainContext_; }
-
+    // 将协程注册新任务队列中
     void goCo(Coroutine* co);
 
     void goCoBatch(std::vector<Coroutine*>& cos);
