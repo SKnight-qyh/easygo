@@ -3,7 +3,7 @@
 #include <sys/sysinfo.h>
 using namespace easygo;
 
-void easygo::co_go(std::function<void()>& func, size_t stackSize = Parameter::coStackSize, int tid)
+void easygo::co_go(std::function<void()>& func, size_t stackSize, int tid)
 {
     if (tid >= ::get_nprocs_conf())
     {
@@ -20,7 +20,7 @@ void easygo::co_go(std::function<void()>& func, size_t stackSize = Parameter::co
     }
 
 }
-void easygo::co_go(std::function<void()>&& func, size_t stackSize = Parameter::coStackSize, int tid)
+void easygo::co_go(std::function<void()>&& func, size_t stackSize, int tid)
 {
     if (tid >= ::get_nprocs_conf())
     {
@@ -38,7 +38,7 @@ void easygo::co_go(std::function<void()>&& func, size_t stackSize = Parameter::c
 
 }
 
-void easygo::co_sleep(MsTime timeout)
+void easygo::co_wait(MsTime timeout)
 {
     Scheduler::getScheduler()->getProcessor(threadIdx)->wait(timeout);
 }

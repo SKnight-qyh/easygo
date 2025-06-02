@@ -1,4 +1,3 @@
-#pragma once
 
 #include "../include/Context.h"
 #include "../include/Parameter.h"

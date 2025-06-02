@@ -49,6 +49,8 @@
 #else
     #define LOG_DEBUG(logmsgFormat, ...)  
 #endif
+namespace easygo 
+{
 
 //定义日志级别
 enum logLevel
@@ -76,3 +78,5 @@ private:
     Logger(){}
 
 };
+
+}

@@ -46,5 +46,5 @@ namespace easygo
         std::atomic<int> readingNum_;
         std::queue<Coroutine*> waitingCo_;
 
-    }
-};
+    };
+}

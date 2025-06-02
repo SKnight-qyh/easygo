@@ -69,7 +69,7 @@ void* MemPool<objSize>::allocMemBlock()
         MemBlockNode* newNode = static_cast<MemBlockNode*>(newMallocBlock);
         newNode->next = mallocListHead_;
         mallocListHead_ = newNode;
-        newMallocBlock = static_cast<char*>(newNode) + sizeof(MemBlockNode);
+        newMallocBlock = static_cast<char*>(newMallocBlock) + sizeof(MemBlockNode);
         for (int i = 0; i < mallocCnt; ++i)
         {
             MemBlockNode* nextNode = static_cast<MemBlockNode*>(newMallocBlock);

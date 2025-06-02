@@ -149,6 +149,7 @@ bool Processor::loop()
         }
         status_ = PRO_STOPPED;
     });
+    return true;
 }
 
 void Processor::killCurCo()

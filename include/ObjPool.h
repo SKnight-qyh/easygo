@@ -38,21 +38,21 @@ template<class T>
 template<typename... Args>
 inline T* ObjPool<T>::newObj(Args&&... args)
 {
-    return new_aux(std::integral_constant<bool, std::is_trivially_constructible<T>::value>(), std::forward<Args>(args)...);
+    return newAux(std::integral_constant<bool, std::is_trivially_constructible<T>::value>(), std::forward<Args>(args)...);
 }
 
 template<class T>
 template<typename... Args>
 inline T* ObjPool<T>::newAux(std::true_type, Args&&... args)
 {
-    return static_cast<T*>(memPool_.AllocAMemBlock());
+    return static_cast<T*>(memPool_.allocMemBlock());
 }
 
 template<class T>
 template<typename... Args>
 inline T* ObjPool<T>::newAux(std::false_type, Args&&... args)
 {
-    void* newPos = memPool_.AllocAMemBlock();
+    void* newPos = memPool_.allocMemBlock();
     return new(newPos) T(std::forward<Args>(args)...);
 }
 

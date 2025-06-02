@@ -10,7 +10,7 @@ namespace easygo
     void co_go(std::function<void()>&& func, size_t stackSize = Parameter::coStackSize, int tid = -1);
 
     // 协程休眠timeout毫秒后继续执行
-    void co_sleep(MsTime timeout);
+    void co_wait(MsTime timeout);
 
     // 等待调度器结束
     void scheduler_join();
